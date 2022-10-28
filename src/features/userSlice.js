@@ -29,7 +29,7 @@ const userSlice = createSlice({
         remove: (state, action) => {
             const id = action.payload.id.id;
             const newExpenseData = state.expenseData.filter((data) => {
-                return data.id != id;
+                return data.id !== id;
             })
             state.expenseData = newExpenseData;
 
@@ -37,7 +37,6 @@ const userSlice = createSlice({
 
         setCategory: (state, action) => {
             state.category = action.payload.category;
-            console.log("Category>>>",state.category );
 
         }
     }

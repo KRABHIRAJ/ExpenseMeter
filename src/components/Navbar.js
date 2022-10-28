@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { MagnifyingGlassIcon, GlobeAltIcon, UserCircleIcon, Bars3Icon, UserIcon, UsersIcon } from '@heroicons/react/24/solid'
-import Home from './Home';
 import { useDispatch } from 'react-redux';
 import {  setCategory } from '../features/userSlice';
 
@@ -26,7 +24,7 @@ function Navbar() {
     <div className='sticky top-0 z-50'>
       <div className='bg-white shadow-md flex justify-between items-center p-3 '>
       <div className='px-4'>  
-        <p className='hidden sm:inline text-violet-600 text-4xl cursor-pointer hover:text-violet-800 transition-all' style={{"fontFamily": 'Lovers Quarrel'}}>Adithya</p>
+        <p className='hidden sm:inline text-violet-600 text-5xl cursor-pointer hover:text-violet-800 transition-all' style={{"fontFamily": 'Lovers Quarrel'}}>ExpenseMeter</p>
       </div>
       
       

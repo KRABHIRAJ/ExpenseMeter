@@ -25,7 +25,7 @@ const expenseData =[
     "description": "House rent",
     "category": "Food&Dining",
     
-    "amount": "35900",
+    "amount": "15900",
     "date": "01-03-2020"
     },
     {
@@ -48,7 +48,36 @@ const expenseData =[
     "category": "travel",
     "amount": "3430",
     "date": "01-18-2020"
-    }
+    },
+    {
+        "id": 8,
+        "description": "Restaurent",
+        "category": "Food&Dining",
+        
+        "amount": "9780",
+        "date": "11-03-2022"
+        },
+        {
+        "id": 9,
+        "description": "Online Course",
+        "category": "education",
+        "amount": "8200",
+        "date": "08-12-2021"
+        },
+        {
+        "id": 10,
+        "description": "Facial",
+        "category": "personalCare",
+        "amount": "8200",
+        "date": "12-14-2020"
+        },
+        {
+        "id": 11,
+        "description": "Manali",
+        "category": "travel",
+        "amount": "7680",
+        "date": "01-18-2022"
+        }
 ]
     
 export default expenseData;

@@ -25,7 +25,7 @@ function Home() {
   let overBudget = totalExpenditure - budget;
   const sortable = [];
   expenseData.map((data) => {
-    sortable.push([data.id, data.amount]);
+    return sortable.push([data.id, data.amount]);
   });
   sortable.sort(function (a, b) {
     return Number(b[1]) - Number(a[1]);
@@ -72,7 +72,7 @@ function Home() {
   
   if (edit) {
     const editItem = expenseData.filter((data) => {
-      return data.id == editId;
+      return data.id === editId;
     })
     console.log(editItem);
   }
@@ -114,12 +114,12 @@ function Home() {
               <h4 className='font-serif '>Bills to be Paid</h4>
           </div>
           <div className='grid sm:grid-cols-3 lg:grid-cols-4 '>
-        {currCategory == "all" ? expenseData.map(({ id, description, category, amount, date }) => {
+        {currCategory === "all" ? expenseData.map(({ id, description, category, amount, date }) => {
                 const payThisBill = billsToRemove.includes(id);
             return <Card key={id} id={id} description={description} category={category} amount={amount} date={date} setEdit={setEdit} setEditId={setEditId} payThisBill={payThisBill} />
               }) :
           expenseData.filter((data) => {
-                 return data.category == currCategory;
+                 return data.category === currCategory;
           }).map(({ id, description, category, amount, date }) => {
                 const payThisBill = billsToRemove.includes(id);
                 
