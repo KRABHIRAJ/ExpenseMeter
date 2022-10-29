@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import Card from './Card';
 import { add, selectUserCategory,  selectUserExpenseData, totalExpense, updateYourBill} from "../features/userSlice";
+import LineChart from './LineChart';
 
 function Home() {
   const [id, setId] = useState("");
@@ -99,6 +100,17 @@ function Home() {
 
   }
 
+  const [lineChartData, setLineChartData] = useState({
+    labels: expenseData.map((data) => data.date),
+    datasets: [{
+      label: "My Expense",
+      data: expenseData.map((data) => data.amount),
+      backgroundColor: ["red"]
+    }]
+  });
+
+
+
   return (
 
     <div className='max-w-[980px] mx-auto '>
@@ -158,6 +170,9 @@ function Home() {
               <div className='h-4 w-4 bg-[#FFAEBC]'></div>
               <h4 className='font-serif '>Bills to be Paid</h4>
           </div>
+          
+        
+          
           <div className='grid sm:grid-cols-3 lg:grid-cols-4 '>
         {currCategory === "all" ? expenseData.map(({ id, description, category, amount, date }) => {
                 const payThisBill = billsToRemove.includes(id);
@@ -173,6 +188,12 @@ function Home() {
             
             }
          </div>
+         
+         <div className='my-11'>
+            <h2 className='mx-auto sm:mx-7 mt-8 text-2xl font-semibold font-serif mb-2 border-b-2 h-fit  border-purple-500 text-purple-500 w-fit '>Your Expense Graph</h2>
+            <LineChart lineChartData={lineChartData} />
+        </div>
+        
     </div>
 
   )
