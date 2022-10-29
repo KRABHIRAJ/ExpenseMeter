@@ -161,15 +161,15 @@ function Home() {
         
           <div className='flex flex-col sm:flex-row sm:justify-between'>
                 <h2 className='mx-auto sm:mx-7 mt-8 text-2xl font-semibold font-serif mb-2 border-b-2 h-fit  border-purple-500 text-purple-500 w-fit '>Your Bills📝</h2>
-                <div className='flex flex-col mt-7 py-1 h-fit border-2 mr-7 border-purple-500 rounded-xl mb-4'>
+                <div className='flex flex-col  mt-7 py-1 h-fit border-2 mx-7 border-purple-500 rounded-xl mb-4'>
                   <h2 className=' mx-auto sm:mx-7 text-lg font-semibold    text-purple-500 w-fit '>Your Budget:  <span className='font-bold text-green-500 cursor-pointer'>₹  {  budget }</span></h2>  
                   <h2 className=' mx-auto sm:mx-7 text-lg font-semibold    text-purple-500 w-fit '>Your total Expense:  <span className='font-bold text-red-500 cursor-pointer'>₹  {  totalExpenditure }</span></h2>  
                 </div>
           </div>
-          <div className='flex items-center ml-7 space-x-2 border-[1.5px] w-fit px-4 rounded-lg border-[#FFAEBC]'>
-              <div className='h-4 w-4 bg-[#FFAEBC]'></div>
-              <h4 className='font-serif '>Bills to be Paid</h4>
-          </div>
+            <div className='flex ml-7 space-x-2 border-[1.5px] w-fit items-center px-4 rounded-lg border-[#FFAEBC]'>
+                <div className='h-4 w-4 bg-[#FFAEBC]'></div>
+                <h4 className='font-serif'>Bills to be Paid</h4>
+            </div>
           
         
           
