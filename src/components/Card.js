@@ -7,6 +7,7 @@ function Card({ id, description, category, amount, date ,setEdit, setEditId, pay
 
   const dispatch = useDispatch();
   const editBill = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     setEdit(true);
     setEditId(id);
   }

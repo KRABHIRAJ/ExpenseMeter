@@ -26,6 +26,18 @@ const userSlice = createSlice({
             console.log("state.expenseData",state.expenseData);
 
         },
+
+        updateYourBill: (state, action) => {
+           const itemId = [];
+            state.expenseData.map((data) => {
+                return itemId.push(data.id);
+            });
+            const idx = itemId.findIndex((id) => {
+                return action.payload.item.id === id;
+            } );
+            state.expenseData.splice(idx, 1, action.payload.item);
+        },
+
         remove: (state, action) => {
             const id = action.payload.id.id;
             const newExpenseData = state.expenseData.filter((data) => {
@@ -43,7 +55,7 @@ const userSlice = createSlice({
 });
 
 
-export const { add, remove, setCategory } = userSlice.actions;
+export const { add, remove, setCategory,updateYourBill } = userSlice.actions;
 
 export const selectUserExpenseData = (state) => state.user.expenseData;
 export const selectUserCategory = (state) => state.user.category;

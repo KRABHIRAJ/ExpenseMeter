@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import Card from './Card';
-import { add, selectUserCategory,  selectUserExpenseData, totalExpense} from "../features/userSlice";
+import { add, selectUserCategory,  selectUserExpenseData, totalExpense, updateYourBill} from "../features/userSlice";
 
 function Home() {
   const [id, setId] = useState("");
@@ -12,13 +12,20 @@ function Home() {
 
   const [edit, setEdit] = useState(false);
   const [editId, setEditId] = useState("");
-
-
-
   const dispatch = useDispatch();
   const expenseData = useSelector(selectUserExpenseData);
   const currCategory = useSelector(selectUserCategory);
 
+  const [updateCategory, setUpdateCategory] = useState("");
+  const [updateDescription, setUpdateDescription] = useState("");
+  const [updateAmount, setUpdateAmount] = useState("");
+  const [updateDate, setUpdateDate] = useState("");
+
+ 
+
+
+
+ 
   const totalExpenditure = totalExpense(expenseData);
   const budget = 40000;
 
@@ -64,24 +71,39 @@ function Home() {
     setAmount("");
     setDate("");
     setDescription("");
-    setEdit(false);
 
   
   }
 
   
-  if (edit) {
-    const editItem = expenseData.filter((data) => {
-      return data.id === editId;
-    })
-    console.log(editItem);
+
+  const updateBill = (e) => {
+    e.preventDefault()
+    e.stopPropagation();
+     
+    dispatch(updateYourBill({
+      item: {
+        id: editId,
+        amount:updateAmount,
+        category: updateCategory,
+        date:updateDate,
+        description: updateDescription
+        }
+    }))
+    setId("");
+    setAmount("");
+    setDate("");
+    setDescription("");
+
+    setEdit(false);
+
   }
 
   return (
 
     <div className='max-w-[980px] mx-auto '>
       
-      <form className='mx-7 mt-4 border-2 py-4 rounded-lg ' action='submit'>
+      {edit === false && <form className='mx-7 mt-4 border-2 py-4 rounded-lg ' action='submit'>
           <h2 className='mx-3 text-xl font-semibold font-serif mb-2 border-b-2 border-purple-500 text-purple-500 w-fit '>Enter Bill Details </h2>
           <div >
             <input value={id} onChange={(e) => setId(e.target.value)} className='pl-2 m-2 border-2 rounded-lg' type="text"  placeholder='id' required/>
@@ -98,8 +120,31 @@ function Home() {
             <input value={amount} onChange={(e) => setAmount(e.target.value)} className='pl-2 m-2 border-2 rounded-lg' type="number"  placeholder='Amount' required/>
             <input value={date} onChange={(e) => setDate(e.target.value)} className='pl-2 m-2 border-2 rounded-lg' type="text"  placeholder='Date (26-10-2022)' required/>
           </div>
-        <button onClick={addBill} className='m-2 px-3 py-1 bg-violet-400 rounded-full text-white hover:bg-violet-500 active:scale-95 transition-all' type='submit'>{edit ? "Update Bill" : "Add Bill" }</button>
+        <button onClick={addBill} className='m-2 px-3 py-1 bg-violet-400 rounded-full text-white hover:bg-violet-500 active:scale-95 transition-all' type='submit'> Add Bill </button>
+      </form>}
+
+      {edit === true && 
+        
+        <form className='mx-7 mt-4 border-2 py-4 rounded-lg ' action='submit'>
+          <h2 className='mx-3 text-xl font-semibold font-serif mb-2 border-b-2 border-purple-500 text-purple-500 w-fit '>Update Your Bill Detail </h2>
+          <div >
+            <select  onChange={(e) => setUpdateCategory(e.target.value)} value={ updateCategory } className='w-44 ml-2 cursor-pointer border-2 px-1 rounded-lg outline-none' name="category" id="category">
+                        <option className='font-semibold text-violet-500' value="all">Bill Category</option>
+                        <option value="Food&Dining">Food & Dining</option>
+                        <option value="utility">Utility</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="education">Education</option>
+                        <option value="personalCare">Personal Care</option>
+                        <option value="travel">Travel</option>
+            </select>
+            <input value={updateDescription} onChange={(e) => setUpdateDescription(e.target.value)} className='pl-2 m-2 border-2 rounded-lg' type="text"  placeholder='Details' required/>
+            <input value={updateAmount} onChange={(e) => setUpdateAmount(e.target.value)} className='pl-2 m-2 border-2 rounded-lg' type="number"  placeholder='Amount' required/>
+            <input value={updateDate} onChange={(e) => setUpdateDate(e.target.value)} className='pl-2 m-2 border-2 rounded-lg' type="text"  placeholder='Date (26-10-2022)' required/>
+          </div>
+        <button onClick={updateBill} className='m-2 px-3 py-1 bg-violet-400 rounded-full text-white hover:bg-violet-500 active:scale-95 transition-all' type='submit'>{"Update Bill"  }</button>
       </form>
+      
+      }
 
         
           <div className='flex flex-col sm:flex-row sm:justify-between'>
